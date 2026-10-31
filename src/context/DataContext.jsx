@@ -9,6 +9,7 @@ import { initialPayments } from '../data/mockPayments';
 import { initialStaff } from '../data/mockStaff';
 import { initialTaxes } from '../data/mockTaxes';
 import { storage, getMonthlyEquivalent, generateId } from '../utils/helpers';
+import { api } from '../services/api';
 
 const DataContext = createContext(null);
 
@@ -23,6 +24,41 @@ export const DataProvider = ({ children }) => {
   const [invoices, setInvoices] = useState(() => storage.get('subflow_invoices', initialInvoices));
   const [payments, setPayments] = useState(() => storage.get('subflow_payments', initialPayments));
   const [staff, setStaff] = useState(() => storage.get('subflow_staff', initialStaff));
+  const [isBackendConnected, setIsBackendConnected] = useState(false);
+
+  // Auto-connect to backend if available
+  useEffect(() => {
+    let mounted = true;
+    api
+      .checkHealth()
+      .then((health) => {
+        if (mounted && health?.status === 'OK') {
+          setIsBackendConnected(true);
+          console.log('✅ BrightLoop Backend API detected and connected.');
+          Promise.allSettled([
+            api.getSubscriptions(),
+            api.getInvoices(),
+            api.getPayments(),
+            api.getProducts(),
+            api.getPlans(),
+            api.getCustomers(),
+          ]).then(([s, i, p, pr, pl, c]) => {
+            if (s.status === 'fulfilled' && s.value?.length > 0) setSubscriptions(s.value);
+            if (i.status === 'fulfilled' && i.value?.length > 0) setInvoices(i.value);
+            if (p.status === 'fulfilled' && p.value?.length > 0) setPayments(p.value);
+            if (pr.status === 'fulfilled' && pr.value?.length > 0) setProducts(pr.value);
+            if (pl.status === 'fulfilled' && pl.value?.length > 0) setPlans(pl.value);
+            if (c.status === 'fulfilled' && c.value?.length > 0) setCustomers(c.value);
+          });
+        }
+      })
+      .catch(() => {
+        if (mounted) setIsBackendConnected(false);
+      });
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
   // Sync to localStorage
   useEffect(() => { storage.set('subflow_customers', customers); }, [customers]);
@@ -405,6 +441,7 @@ export const DataProvider = ({ children }) => {
         payments,
         staff,
         metrics,
+        isBackendConnected,
         resetToDefaults,
         // Product Actions
         addProduct,
