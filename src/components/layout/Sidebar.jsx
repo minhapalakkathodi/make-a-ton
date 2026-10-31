@@ -44,7 +44,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
     { label: 'Invoices', icon: Receipt, to: '/admin/invoices' },
     { label: 'Payments', icon: CreditCard, to: '/admin/payments' },
     { label: 'Discounts', icon: Percent, to: '/admin/discounts' },
-    { label: 'Taxes', icon: PercentCircle, to: '/admin/settings' },
+    { label: 'Taxes', icon: PercentCircle, to: '/admin/taxes' },
     { label: 'Customers', icon: Users, to: '/admin/customers' },
     { label: 'Staff', icon: UserCog, to: '/admin/staff' },
     { label: 'Reports', icon: BarChart3, to: '/admin/reports' },

@@ -7,6 +7,7 @@ import { initialQuotations } from '../data/mockQuotations';
 import { initialInvoices } from '../data/mockInvoices';
 import { initialPayments } from '../data/mockPayments';
 import { initialStaff } from '../data/mockStaff';
+import { initialTaxes } from '../data/mockTaxes';
 import { storage, getMonthlyEquivalent, generateId } from '../utils/helpers';
 
 const DataContext = createContext(null);
@@ -16,6 +17,7 @@ export const DataProvider = ({ children }) => {
   const [products, setProducts] = useState(() => storage.get('subflow_products', initialProducts));
   const [plans, setPlans] = useState(() => storage.get('subflow_plans', initialPlans));
   const [discounts, setDiscounts] = useState(() => storage.get('subflow_discounts', initialDiscounts));
+  const [taxes, setTaxes] = useState(() => storage.get('subflow_taxes', initialTaxes));
   const [subscriptions, setSubscriptions] = useState(() => storage.get('subflow_subscriptions', initialSubscriptions));
   const [quotations, setQuotations] = useState(() => storage.get('subflow_quotations', initialQuotations));
   const [invoices, setInvoices] = useState(() => storage.get('subflow_invoices', initialInvoices));
@@ -27,6 +29,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => { storage.set('subflow_products', products); }, [products]);
   useEffect(() => { storage.set('subflow_plans', plans); }, [plans]);
   useEffect(() => { storage.set('subflow_discounts', discounts); }, [discounts]);
+  useEffect(() => { storage.set('subflow_taxes', taxes); }, [taxes]);
   useEffect(() => { storage.set('subflow_subscriptions', subscriptions); }, [subscriptions]);
   useEffect(() => { storage.set('subflow_quotations', quotations); }, [quotations]);
   useEffect(() => { storage.set('subflow_invoices', invoices); }, [invoices]);
@@ -39,6 +42,7 @@ export const DataProvider = ({ children }) => {
     setProducts(initialProducts);
     setPlans(initialPlans);
     setDiscounts(initialDiscounts);
+    setTaxes(initialTaxes);
     setSubscriptions(initialSubscriptions);
     setQuotations(initialQuotations);
     setInvoices(initialInvoices);
@@ -272,6 +276,25 @@ export const DataProvider = ({ children }) => {
     setDiscounts((prev) => prev.filter((d) => d.id !== id));
   };
 
+  // Taxes
+  const addTax = (tax) => {
+    const newTax = {
+      ...tax,
+      id: generateId('TAX'),
+      status: tax.status || 'Active',
+    };
+    setTaxes((prev) => [newTax, ...prev]);
+    return newTax;
+  };
+
+  const updateTax = (id, updates) => {
+    setTaxes((prev) => prev.map((t) => (t.id === id ? { ...t, ...updates } : t)));
+  };
+
+  const deleteTax = (id) => {
+    setTaxes((prev) => prev.filter((t) => t.id !== id));
+  };
+
   // Customers
   const addCustomer = (cust) => {
     const newCust = {
@@ -375,6 +398,7 @@ export const DataProvider = ({ children }) => {
         products,
         plans,
         discounts,
+        taxes,
         subscriptions,
         quotations,
         invoices,
@@ -390,6 +414,10 @@ export const DataProvider = ({ children }) => {
         addPlan,
         updatePlan,
         deletePlan,
+        // Tax Actions
+        addTax,
+        updateTax,
+        deleteTax,
         // Subscription Actions
         addSubscription,
         updateSubscription,

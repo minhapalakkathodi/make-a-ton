@@ -21,6 +21,7 @@ import { QuotationListPage } from '../pages/quotations/QuotationListPage';
 import { InvoiceListPage } from '../pages/invoices/InvoiceListPage';
 import { PaymentListPage } from '../pages/payments/PaymentListPage';
 import { DiscountListPage } from '../pages/discounts/DiscountListPage';
+import { TaxListPage } from '../pages/taxes/TaxListPage';
 import { CustomerListPage } from '../pages/customers/CustomerListPage';
 import { StaffManagementPage } from '../pages/staff/StaffManagementPage';
 import { RevenueReportsPage } from '../pages/reports/RevenueReportsPage';
@@ -56,6 +57,7 @@ export const AppRoutes = () => {
         <Route path="products" element={<ProductListPage />} />
         <Route path="plans" element={<PlanListPage />} />
         <Route path="discounts" element={<DiscountListPage />} />
+        <Route path="taxes" element={<TaxListPage />} />
         <Route path="subscriptions" element={<SubscriptionListPage />} />
         <Route path="quotations" element={<QuotationListPage />} />
         <Route path="invoices" element={<InvoiceListPage />} />
