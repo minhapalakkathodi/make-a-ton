@@ -100,76 +100,73 @@ export const TaxListPage = () => {
       {/* Top Header matching BrightLoop style */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Taxes</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">
+          <h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Taxes</h1>
+          <p className="text-xs text-zinc-500 font-normal mt-0.5">
             Manage tax rates and GST/VAT rules applied to recurring invoices
           </p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-600/30 transition active:scale-95"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 font-medium text-xs shadow-xs transition active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>Add Tax Rate</span>
         </button>
       </div>
 
-      {/* Main Table Card matching BrightLoop design */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        {/* Search bar inside card */}
-        <div className="p-4 border-b border-slate-100">
-          <div className="relative max-w-sm">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search tax rules by name or code..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-            />
-          </div>
-        </div>
+      {/* Standalone Search Bar */}
+      <div className="relative max-w-sm">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search tax rules by name or code..."
+          className="w-full px-4 py-2.5 text-xs bg-white border border-[#faefbe] rounded-xl text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30 focus:border-[#f5b72e] shadow-xs transition-colors"
+        />
+      </div>
 
+      {/* Main Table Card */}
+      <div className="bg-white rounded-2xl border border-[#faefbe] shadow-xs overflow-hidden">
         {/* Taxes Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-100 text-slate-500 font-bold text-[11px]">
-                <th className="px-6 py-3.5">Tax Name & Code</th>
-                <th className="px-6 py-3.5">Rate (%)</th>
-                <th className="px-6 py-3.5">Applies To</th>
-                <th className="px-6 py-3.5">Default</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-[#faefbe]/60 text-zinc-400 font-medium text-[11px]">
+                <th className="px-6 py-4">Tax Name & Code</th>
+                <th className="px-6 py-4">Rate (%)</th>
+                <th className="px-6 py-4">Applies To</th>
+                <th className="px-6 py-4">Default</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-[#faefbe]/40 text-zinc-700">
               {filteredTaxes.map((tax) => (
-                <tr key={tax.id} className="hover:bg-slate-50/60 transition">
+                <tr key={tax.id} className="hover:bg-[#fef8db]/30 transition">
                   <td className="px-6 py-4">
-                    <div className="font-bold text-slate-900">{tax.name}</div>
-                    <div className="text-[11px] font-mono text-slate-400">{tax.code}</div>
+                    <div className="font-medium text-zinc-900">{tax.name}</div>
+                    <div className="text-[11px] font-mono text-zinc-400">{tax.code}</div>
                   </td>
-                  <td className="px-6 py-4 font-extrabold text-blue-600 text-sm">
+                  <td className="px-6 py-4 font-bold text-zinc-900 text-sm">
                     {tax.rate}%
                   </td>
-                  <td className="px-6 py-4 text-slate-600">{tax.appliesTo}</td>
+                  <td className="px-6 py-4 text-zinc-600">{tax.appliesTo}</td>
                   <td className="px-6 py-4">
                     {tax.isDefault ? (
-                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#b45309] bg-[#fef3c7] px-2.5 py-0.5 rounded-full">
                         <CheckCircle2 className="w-3 h-3" /> Default
                       </span>
                     ) : (
-                      <span className="text-slate-400 text-xs">—</span>
+                      <span className="text-zinc-400 text-xs">—</span>
                     )}
                   </td>
                   <td className="px-6 py-4">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
+                      className={`inline-flex items-center px-3 py-0.5 rounded-full text-[11px] font-medium ${
                         tax.status === 'Active'
-                          ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
-                          : 'bg-rose-50 text-rose-600 border-rose-200'
+                          ? 'bg-[#dcfce7] text-[#15803d]'
+                          : 'bg-[#fee2e2] text-[#b91c1c]'
                       }`}
                     >
                       {tax.status}
@@ -179,14 +176,14 @@ export const TaxListPage = () => {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleOpenEdit(tax)}
-                        className="p-1 rounded text-blue-600 hover:bg-blue-50 transition"
+                        className="p-1 rounded text-zinc-500 hover:text-zinc-900 hover:bg-[#fef8db] transition"
                         title="Edit Tax Rule"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeletingId(tax.id)}
-                        className="p-1 rounded text-rose-500 hover:bg-rose-50 transition"
+                        className="p-1 rounded text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition"
                         title="Delete Tax Rule"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -199,12 +196,22 @@ export const TaxListPage = () => {
           </table>
         </div>
 
-        {/* Footer pagination bar */}
-        <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+        {/* Footer pagination bar matching screenshot */}
+        <div className="px-6 py-3.5 border-t border-[#faefbe]/60 flex items-center justify-between text-xs text-zinc-400 font-normal">
           <span>
-            Showing 1-{filteredTaxes.length} of {filteredTaxes.length} tax rules
+            Showing 1-{filteredTaxes.length} of {filteredTaxes.length} items
           </span>
-          <span className="text-slate-400 text-[11px]">Tax rates auto-calculate during invoice generation</span>
+          <div className="flex items-center gap-1.5">
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <span className="w-6 h-6 rounded bg-[#f5b72e] text-zinc-900 font-medium flex items-center justify-center text-[11px]">
+              1
+            </span>
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -276,23 +283,23 @@ export const TaxListPage = () => {
                 type="checkbox"
                 checked={formData.isDefault}
                 onChange={(e) => setFormData({ ...formData, isDefault: e.target.checked })}
-                className="rounded border-slate-300 text-blue-600 focus:ring-blue-500"
+                className="rounded border-[#faefbe] text-[#f5b72e] focus:ring-[#f5b72e]"
               />
-              <span className="text-xs font-semibold text-slate-700">Set as default tax rate on new invoices</span>
+              <span className="text-xs font-normal text-zinc-700">Set as default tax rate on new invoices</span>
             </label>
           </div>
 
-          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-[#faefbe]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50"
+              className="px-4 py-2 rounded-full border border-zinc-200 text-zinc-600 text-xs font-medium hover:bg-[#fef8db]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm"
+              className="px-5 py-2 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 text-xs font-semibold shadow-xs"
             >
               {editingTax ? 'Save Changes' : 'Create Tax Rule'}
             </button>
@@ -312,3 +319,4 @@ export const TaxListPage = () => {
     </div>
   );
 };
+

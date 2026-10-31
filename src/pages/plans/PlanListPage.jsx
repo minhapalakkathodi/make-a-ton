@@ -78,13 +78,13 @@ export const PlanListPage = () => {
       {/* Header matching screenshot */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Plans</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">Create and manage subscription plans</p>
+          <h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Plans</h1>
+          <p className="text-xs text-zinc-500 font-normal mt-0.5">Create and manage subscription plans</p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-600/30 transition active:scale-95"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 font-medium text-xs shadow-xs transition active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>Create Plan</span>
@@ -92,26 +92,26 @@ export const PlanListPage = () => {
       </div>
 
       {/* Main Table Card matching screenshot */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#faefbe] shadow-xs overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-100 text-slate-500 font-bold text-[11px]">
-                <th className="px-6 py-3.5">Plan Name</th>
-                <th className="px-6 py-3.5">Price</th>
-                <th className="px-6 py-3.5">Billing</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-[#faefbe]/60 text-zinc-400 font-medium text-[11px]">
+                <th className="px-6 py-4">Plan Name</th>
+                <th className="px-6 py-4">Price</th>
+                <th className="px-6 py-4">Billing</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-[#faefbe]/40 text-zinc-700">
               {plans.map((pl) => (
-                <tr key={pl.id} className="hover:bg-slate-50/60 transition">
-                  <td className="px-6 py-4 font-bold text-slate-900">{pl.name}</td>
-                  <td className="px-6 py-4 font-bold text-slate-900">{formatCurrency(pl.price)}</td>
-                  <td className="px-6 py-4 text-slate-600 capitalize">{pl.billing || pl.interval || 'Monthly'}</td>
+                <tr key={pl.id} className="hover:bg-[#fef8db]/30 transition">
+                  <td className="px-6 py-4 font-medium text-zinc-900">{pl.name}</td>
+                  <td className="px-6 py-4 font-semibold text-zinc-900">{formatCurrency(pl.price)}</td>
+                  <td className="px-6 py-4 text-zinc-600 capitalize">{pl.billing || pl.interval || 'Monthly'}</td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-600 border border-emerald-200">
+                    <span className="inline-flex items-center px-3 py-0.5 rounded-full text-[11px] font-medium bg-[#dcfce7] text-[#15803d]">
                       {pl.status || 'Active'}
                     </span>
                   </td>
@@ -119,14 +119,14 @@ export const PlanListPage = () => {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleOpenEdit(pl)}
-                        className="p-1 rounded text-blue-600 hover:bg-blue-50 transition"
+                        className="p-1 rounded text-zinc-500 hover:text-zinc-900 hover:bg-[#fef8db] transition"
                         title="Edit Plan"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeletingId(pl.id)}
-                        className="p-1 rounded text-rose-500 hover:bg-rose-50 transition"
+                        className="p-1 rounded text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition"
                         title="Delete Plan"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -140,18 +140,18 @@ export const PlanListPage = () => {
         </div>
 
         {/* Footer pagination bar matching screenshot */}
-        <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+        <div className="px-6 py-3.5 border-t border-[#faefbe]/60 flex items-center justify-between text-xs text-zinc-400 font-normal">
           <span>
             Showing 1-{plans.length} of {plans.length} items
           </span>
-          <div className="flex items-center gap-1">
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+          <div className="flex items-center gap-1.5">
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="w-6 h-6 rounded-md bg-blue-600 text-white font-bold flex items-center justify-center text-[11px]">
+            <span className="w-6 h-6 rounded bg-[#f5b72e] text-zinc-900 font-medium flex items-center justify-center text-[11px]">
               1
             </span>
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -205,17 +205,17 @@ export const PlanListPage = () => {
             />
           </div>
 
-          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-[#faefbe]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50"
+              className="px-4 py-2 rounded-full border border-zinc-200 text-zinc-600 text-xs font-medium hover:bg-[#fef8db]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm"
+              className="px-5 py-2 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 text-xs font-semibold shadow-xs"
             >
               {editingPlan ? 'Save Changes' : 'Create Plan'}
             </button>

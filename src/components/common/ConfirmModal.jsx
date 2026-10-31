@@ -37,7 +37,7 @@ export const ConfirmModal = ({
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+      <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-[#faefbe]">
         <Button variant="outline" size="sm" onClick={onClose} disabled={isLoading}>
           {cancelText}
         </Button>

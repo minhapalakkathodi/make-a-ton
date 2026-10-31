@@ -5,8 +5,8 @@ export const Card = ({ children, className = '', hover = false, ...props }) => {
   return (
     <div
       className={cn(
-        'bg-white rounded-xl border border-slate-200/80 shadow-xs transition-all duration-150',
-        hover && 'hover:shadow-md hover:border-slate-300',
+        'bg-white rounded-2xl border border-[#faefbe] shadow-xs transition-all duration-150',
+        hover && 'hover:shadow-sm hover:border-[#f5b72e]/60',
         className
       )}
       {...props}
@@ -20,7 +20,7 @@ export const CardHeader = ({ children, className = '', action }) => {
   return (
     <div
       className={cn(
-        'px-5 py-4 border-b border-slate-100 flex items-center justify-between gap-4',
+        'px-5 py-4 border-b border-[#faefbe]/60 flex items-center justify-between gap-4',
         className
       )}
     >

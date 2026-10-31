@@ -94,64 +94,61 @@ export const SubscriptionListPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* Top Header matching screenshot */}
+      {/* Top Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Subscriptions</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">Manage all subscriptions</p>
+          <h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Subscriptions</h1>
+          <p className="text-xs text-zinc-500 font-normal mt-0.5">Manage all subscriptions</p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-600/30 transition active:scale-95"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 font-medium text-xs shadow-xs transition active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>New Subscription</span>
         </button>
       </div>
 
-      {/* Main Table Card matching screenshot */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        {/* Search bar inside card */}
-        <div className="p-4 border-b border-slate-100">
-          <div className="relative max-w-sm">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search subscriptions..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-            />
-          </div>
-        </div>
+      {/* Standalone Search Bar */}
+      <div className="relative max-w-sm">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search subscriptions..."
+          className="w-full px-4 py-2.5 text-xs bg-white border border-[#faefbe] rounded-xl text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30 focus:border-[#f5b72e] shadow-xs transition-colors"
+        />
+      </div>
 
-        {/* Subscriptions Table matching screenshot */}
+      {/* Main Table Card */}
+      <div className="bg-white rounded-2xl border border-[#faefbe] shadow-xs overflow-hidden">
+        {/* Subscriptions Table */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-100 text-slate-500 font-bold text-[11px]">
-                <th className="px-6 py-3.5">Subscription</th>
-                <th className="px-6 py-3.5">Customer</th>
-                <th className="px-6 py-3.5">Plan</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-[#faefbe]/60 text-zinc-400 font-medium text-[11px]">
+                <th className="px-6 py-4">Subscription</th>
+                <th className="px-6 py-4">Customer</th>
+                <th className="px-6 py-4">Plan</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-[#faefbe]/40 text-zinc-700">
               {filteredSubs.map((sub) => (
-                <tr key={sub.id} className="hover:bg-slate-50/60 transition">
-                  <td className="px-6 py-4 font-mono font-bold text-slate-900">{sub.id}</td>
-                  <td className="px-6 py-4 font-semibold text-slate-800">{sub.customerName}</td>
-                  <td className="px-6 py-4 text-slate-600">{sub.planName}</td>
+                <tr key={sub.id} className="hover:bg-[#fef8db]/30 transition">
+                  <td className="px-6 py-4 font-mono font-medium text-zinc-900">{sub.id}</td>
+                  <td className="px-6 py-4 font-normal text-zinc-800">{sub.customerName}</td>
+                  <td className="px-6 py-4 text-zinc-600">{sub.planName}</td>
                   <td className="px-6 py-4">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
+                      className={`inline-flex items-center px-3 py-0.5 rounded-full text-[11px] font-medium ${
                         sub.status === 'Active'
-                          ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
+                          ? 'bg-[#dcfce7] text-[#15803d]'
                           : sub.status === 'Draft'
-                          ? 'bg-amber-50 text-amber-600 border-amber-200'
-                          : 'bg-rose-50 text-rose-600 border-rose-200'
+                          ? 'bg-[#fef3c7] text-[#b45309]'
+                          : 'bg-[#fee2e2] text-[#b91c1c]'
                       }`}
                     >
                       {sub.status}
@@ -161,21 +158,21 @@ export const SubscriptionListPage = () => {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => setViewingSub(sub)}
-                        className="p-1 rounded text-slate-400 hover:text-slate-700 hover:bg-slate-50 transition"
+                        className="p-1 rounded text-zinc-400 hover:text-zinc-700 hover:bg-[#fef8db] transition"
                         title="View Details"
                       >
                         <Eye className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleOpenEdit(sub)}
-                        className="p-1 rounded text-blue-600 hover:bg-blue-50 transition"
+                        className="p-1 rounded text-zinc-600 hover:text-zinc-900 hover:bg-[#fef8db] transition"
                         title="Edit"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeletingId(sub.id)}
-                        className="p-1 rounded text-rose-500 hover:bg-rose-50 transition"
+                        className="p-1 rounded text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition"
                         title="Cancel"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -189,18 +186,18 @@ export const SubscriptionListPage = () => {
         </div>
 
         {/* Footer pagination bar matching screenshot */}
-        <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+        <div className="px-6 py-3.5 border-t border-[#faefbe]/60 flex items-center justify-between text-xs text-zinc-400 font-normal">
           <span>
             Showing 1-{filteredSubs.length} of {filteredSubs.length} items
           </span>
-          <div className="flex items-center gap-1">
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+          <div className="flex items-center gap-1.5">
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="w-6 h-6 rounded-md bg-blue-600 text-white font-bold flex items-center justify-center text-[11px]">
+            <span className="w-6 h-6 rounded bg-[#f5b72e] text-zinc-900 font-medium flex items-center justify-center text-[11px]">
               1
             </span>
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -243,17 +240,17 @@ export const SubscriptionListPage = () => {
             ]}
           />
 
-          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-[#faefbe]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50"
+              className="px-4 py-2 rounded-full border border-zinc-200 text-zinc-600 text-xs font-medium hover:bg-[#fef8db]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm"
+              className="px-5 py-2 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 text-xs font-semibold shadow-xs"
             >
               {editingSub ? 'Save Changes' : 'Confirm Subscription'}
             </button>
@@ -271,22 +268,22 @@ export const SubscriptionListPage = () => {
           size="sm"
         >
           <div className="space-y-3 text-xs">
-            <div className="flex justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-              <span className="text-slate-500">Plan:</span>
-              <span className="font-bold text-slate-900">{viewingSub.planName}</span>
+            <div className="flex justify-between p-3 rounded-xl bg-[#fffdf5] border border-[#faefbe]">
+              <span className="text-zinc-500">Plan:</span>
+              <span className="font-semibold text-zinc-900">{viewingSub.planName}</span>
             </div>
-            <div className="flex justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-              <span className="text-slate-500">Rate:</span>
-              <span className="font-bold text-blue-600">{formatCurrency(viewingSub.totalAmount)} / {viewingSub.interval}</span>
+            <div className="flex justify-between p-3 rounded-xl bg-[#fef3c7]/60 border border-[#fde68a]">
+              <span className="text-zinc-600">Rate:</span>
+              <span className="font-bold text-zinc-900">{formatCurrency(viewingSub.totalAmount)} / {viewingSub.interval}</span>
             </div>
-            <div className="flex justify-between p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-              <span className="text-slate-500">Next Renewal:</span>
-              <span className="font-semibold text-slate-800">{formatDate(viewingSub.nextRenewalDate)}</span>
+            <div className="flex justify-between p-3 rounded-xl bg-[#fffdf5] border border-[#faefbe]">
+              <span className="text-zinc-500">Next Renewal:</span>
+              <span className="font-medium text-zinc-900">{formatDate(viewingSub.nextRenewalDate)}</span>
             </div>
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setViewingSub(null)}
-                className="px-4 py-1.5 rounded-xl border border-slate-200 text-slate-700 font-semibold text-xs"
+                className="px-4 py-1.5 rounded-full border border-zinc-200 text-zinc-700 font-medium text-xs hover:bg-[#fef8db]"
               >
                 Close
               </button>

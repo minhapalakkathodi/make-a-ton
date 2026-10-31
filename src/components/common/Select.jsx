@@ -31,9 +31,9 @@ export const Select = React.forwardRef(({
           ref={ref}
           id={selectId}
           className={cn(
-            'w-full appearance-none rounded-lg border border-slate-300 bg-white px-3 py-2 pr-9 text-sm text-slate-900 transition duration-150',
-            'focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20',
-            'disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed cursor-pointer',
+            'w-full appearance-none rounded-xl border border-[#faefbe] bg-white px-3.5 py-2 pr-9 text-xs text-zinc-900 transition duration-150',
+            'focus:border-[#f5b72e] focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30',
+            'disabled:bg-[#fef8db]/40 disabled:text-zinc-400 disabled:cursor-not-allowed cursor-pointer',
             error && 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 text-rose-900',
             className
           )}

@@ -14,15 +14,15 @@ export const Button = React.forwardRef(({
   type = 'button',
   ...props
 }, ref) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1 select-none disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]';
+  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-full transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-1 select-none disabled:opacity-60 disabled:cursor-not-allowed active:scale-[0.98]';
 
   const variants = {
-    primary: 'bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow focus:ring-brand-500 border border-transparent',
-    secondary: 'bg-slate-100 hover:bg-slate-200 text-slate-800 focus:ring-slate-400 border border-transparent',
-    outline: 'bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 shadow-xs focus:ring-brand-500',
-    danger: 'bg-rose-600 hover:bg-rose-700 text-white shadow-sm focus:ring-rose-500 border border-transparent',
-    ghost: 'bg-transparent hover:bg-slate-100 text-slate-600 hover:text-slate-900 focus:ring-slate-300',
-    dark: 'bg-slate-900 hover:bg-slate-800 text-white shadow-sm focus:ring-slate-700 border border-transparent',
+    primary: 'bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 shadow-xs focus:ring-[#f5b72e]/50 border border-transparent font-semibold',
+    secondary: 'bg-[#fef8db] hover:bg-[#faefbe] text-zinc-800 border border-[#faefbe] focus:ring-[#f5b72e]/40',
+    outline: 'bg-white hover:bg-[#fef8db]/30 text-zinc-700 border border-[#faefbe] shadow-xs focus:ring-[#f5b72e]/50',
+    danger: 'bg-rose-600 hover:bg-rose-700 text-white shadow-xs focus:ring-rose-500 border border-transparent',
+    ghost: 'bg-transparent hover:bg-[#fef8db] text-zinc-600 hover:text-zinc-900 focus:ring-[#f5b72e]/30',
+    dark: 'bg-zinc-900 hover:bg-zinc-800 text-white shadow-xs focus:ring-zinc-700 border border-transparent',
   };
 
   const sizes = {

@@ -46,20 +46,20 @@ export const Modal = ({
       {/* Modal Card */}
       <div
         className={cn(
-          'relative w-full bg-white rounded-2xl shadow-2xl border border-slate-200 z-10 overflow-hidden transform transition-all duration-200 animate-in zoom-in-95',
+          'relative w-full bg-white rounded-2xl shadow-xl border border-[#faefbe] z-10 overflow-hidden transform transition-all duration-200 animate-in zoom-in-95',
           sizeClasses[size] || sizeClasses.md,
           className
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-[#faefbe]/60">
           <div>
-            <h3 className="text-lg font-bold text-slate-900 tracking-tight">{title}</h3>
-            {description && <p className="text-xs text-slate-500 mt-0.5">{description}</p>}
+            <h3 className="text-lg font-bold text-zinc-900 tracking-tight">{title}</h3>
+            {description && <p className="text-xs text-zinc-500 mt-0.5">{description}</p>}
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
+            className="p-1.5 rounded-full text-zinc-400 hover:text-zinc-700 hover:bg-[#fef8db] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>

@@ -7,23 +7,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb', // Vibrant BrightLoop primary blue
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+        cream: {
+          50: '#fffdf5',  // App background
+          100: '#fefcf0', // Soft card background
+          200: '#fef8db', // Sidebar background
+          300: '#fef3c7', // Highlight card background
+          400: '#fde68a',
         },
-        navy: {
-          800: '#151f38',
-          900: '#0d1527', // BrightLoop deep dark sidebar navy
-          950: '#080d1a',
+        honey: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#facc15',
+          500: '#f5b72e', // BrightLoop warm golden yellow accent
+          600: '#eab308',
+          700: '#ca8a04',
+          800: '#a16207',
+          900: '#854d0e',
+        },
+        brand: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#facc15',
+          500: '#f5b72e',
+          600: '#eab308',
+          700: '#ca8a04',
+          800: '#a16207',
+          900: '#854d0e',
         }
       }
     },

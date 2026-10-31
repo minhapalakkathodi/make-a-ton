@@ -88,62 +88,59 @@ export const ProductListPage = () => {
 
   return (
     <div className="space-y-6">
-      {/* Top Header matching screenshot */}
+      {/* Top Header matching warm minimalist template */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">Products</h1>
-          <p className="text-xs text-slate-500 font-medium mt-0.5">Manage your products here</p>
+          <h1 className="text-2xl font-bold text-zinc-900 tracking-tight">Products</h1>
+          <p className="text-xs text-zinc-500 font-normal mt-0.5">Manage your products here</p>
         </div>
 
         <button
           onClick={handleOpenAdd}
-          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs shadow-md shadow-blue-600/30 transition active:scale-95"
+          className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 font-medium text-xs shadow-xs transition active:scale-95"
         >
           <Plus className="w-4 h-4" />
           <span>Add Product</span>
         </button>
       </div>
 
-      {/* Main Table Card matching screenshot */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-        {/* Search bar inside card */}
-        <div className="p-4 border-b border-slate-100">
-          <div className="relative max-w-sm">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
-            />
-          </div>
-        </div>
+      {/* Standalone Search Bar */}
+      <div className="relative max-w-sm">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search products..."
+          className="w-full px-4 py-2.5 text-xs bg-white border border-[#faefbe] rounded-xl text-zinc-800 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30 focus:border-[#f5b72e] shadow-xs transition-colors"
+        />
+      </div>
 
+      {/* Main Table Card */}
+      <div className="bg-white rounded-2xl border border-[#faefbe] shadow-xs overflow-hidden">
         {/* Products Table matching screenshot */}
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-slate-100 text-slate-500 font-bold text-[11px]">
-                <th className="px-6 py-3.5">Product</th>
-                <th className="px-6 py-3.5">Type</th>
-                <th className="px-6 py-3.5">Price</th>
-                <th className="px-6 py-3.5">Status</th>
-                <th className="px-6 py-3.5 text-right">Actions</th>
+              <tr className="border-b border-[#faefbe]/60 text-zinc-400 font-medium text-[11px]">
+                <th className="px-6 py-4">Product</th>
+                <th className="px-6 py-4">Type</th>
+                <th className="px-6 py-4">Price</th>
+                <th className="px-6 py-4">Status</th>
+                <th className="px-6 py-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 text-slate-700">
+            <tbody className="divide-y divide-[#faefbe]/40 text-zinc-700">
               {filteredProducts.map((p) => (
-                <tr key={p.id} className="hover:bg-slate-50/60 transition">
-                  <td className="px-6 py-4 font-bold text-slate-900">{p.name}</td>
-                  <td className="px-6 py-4 text-slate-600">{p.type || p.category || 'Software'}</td>
-                  <td className="px-6 py-4 font-bold text-slate-900">{formatCurrency(p.price || 2000)}</td>
+                <tr key={p.id} className="hover:bg-[#fef8db]/30 transition">
+                  <td className="px-6 py-4 font-medium text-zinc-900">{p.name}</td>
+                  <td className="px-6 py-4 text-zinc-600">{p.type || p.category || 'Software'}</td>
+                  <td className="px-6 py-4 font-semibold text-zinc-900">{formatCurrency(p.price || 2000)}</td>
                   <td className="px-6 py-4">
                     <span
-                      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${
+                      className={`inline-flex items-center px-3 py-0.5 rounded-full text-[11px] font-medium ${
                         p.status === 'Active'
-                          ? 'bg-emerald-50 text-emerald-600 border-emerald-200'
-                          : 'bg-rose-50 text-rose-600 border-rose-200'
+                          ? 'bg-[#dcfce7] text-[#15803d]'
+                          : 'bg-[#fee2e2] text-[#b91c1c]'
                       }`}
                     >
                       {p.status}
@@ -153,14 +150,14 @@ export const ProductListPage = () => {
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleOpenEdit(p)}
-                        className="p-1 rounded text-blue-600 hover:bg-blue-50 transition"
+                        className="p-1 rounded text-zinc-500 hover:text-zinc-900 hover:bg-[#fef8db] transition"
                         title="Edit"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeletingId(p.id)}
-                        className="p-1 rounded text-rose-500 hover:bg-rose-50 transition"
+                        className="p-1 rounded text-rose-500 hover:text-rose-700 hover:bg-rose-50 transition"
                         title="Delete"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -174,18 +171,18 @@ export const ProductListPage = () => {
         </div>
 
         {/* Footer pagination bar matching screenshot */}
-        <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-medium">
+        <div className="px-6 py-3.5 border-t border-[#faefbe]/60 flex items-center justify-between text-xs text-zinc-400 font-normal">
           <span>
             Showing 1-{filteredProducts.length} of {filteredProducts.length} items
           </span>
-          <div className="flex items-center gap-1">
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+          <div className="flex items-center gap-1.5">
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronLeft className="w-4 h-4" />
             </button>
-            <span className="w-6 h-6 rounded-md bg-blue-600 text-white font-bold flex items-center justify-center text-[11px]">
+            <span className="w-6 h-6 rounded bg-[#f5b72e] text-zinc-900 font-medium flex items-center justify-center text-[11px]">
               1
             </span>
-            <button className="p-1 text-slate-400 hover:text-slate-700 disabled:opacity-40" disabled>
+            <button className="p-1 text-zinc-400 hover:text-zinc-700 disabled:opacity-40" disabled>
               <ChevronRight className="w-4 h-4" />
             </button>
           </div>
@@ -241,17 +238,17 @@ export const ProductListPage = () => {
             ]}
           />
 
-          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+          <div className="mt-6 flex items-center justify-end gap-3 pt-3 border-t border-[#faefbe]">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}
-              className="px-4 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50"
+              className="px-4 py-2 rounded-full border border-zinc-200 text-zinc-600 text-xs font-medium hover:bg-[#fef8db]"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm"
+              className="px-5 py-2 rounded-full bg-[#f5b72e] hover:bg-[#eab308] text-zinc-900 text-xs font-semibold shadow-xs"
             >
               {editingProduct ? 'Save Changes' : 'Create Product'}
             </button>

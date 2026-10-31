@@ -8,8 +8,8 @@ export const AppLayout = () => {
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
-      {/* Sidebar (Desktop and Mobile) */}
+    <div className="min-h-screen bg-[#fffdf5] flex">
+      {/* Sidebar - Warm Butter Yellow */}
       <Sidebar
         isCollapsed={isCollapsed}
         onToggleCollapse={() => setIsCollapsed(!isCollapsed)}
@@ -18,7 +18,7 @@ export const AppLayout = () => {
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-screen">
+      <div className="flex-1 flex flex-col min-w-0 min-h-screen bg-[#fffdf5]">
         <Header
           onToggleSidebar={() => {
             if (window.innerWidth < 768) {
@@ -39,4 +39,3 @@ export const AppLayout = () => {
     </div>
   );
 };
-

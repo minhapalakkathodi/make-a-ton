@@ -33,3 +33,4 @@ export const initialTaxes = [
     description: 'Zero-rated supply under Letter of Undertaking (LUT) for overseas buyers.',
   },
 ];
+

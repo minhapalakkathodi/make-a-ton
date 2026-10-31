@@ -39,9 +39,9 @@ export const Input = React.forwardRef(({
           id={inputId}
           type={type}
           className={cn(
-            'w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition duration-150',
-            'focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20',
-            'disabled:bg-slate-50 disabled:text-slate-500 disabled:cursor-not-allowed',
+            'w-full rounded-xl border border-[#faefbe] bg-white px-3.5 py-2 text-xs text-zinc-900 placeholder:text-zinc-400 transition duration-150',
+            'focus:border-[#f5b72e] focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30',
+            'disabled:bg-[#fef8db]/40 disabled:text-zinc-400 disabled:cursor-not-allowed',
             LeftIcon && 'pl-9',
             RightIcon && 'pr-9',
             error && 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/20 text-rose-900',

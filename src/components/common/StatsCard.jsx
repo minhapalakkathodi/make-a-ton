@@ -15,14 +15,14 @@ export const StatsCard = ({
   return (
     <div
       className={cn(
-        'bg-white rounded-xl border border-slate-200/80 p-5 shadow-xs transition duration-150 hover:shadow-sm hover:border-slate-300 flex flex-col justify-between',
+        'bg-white rounded-2xl border border-[#faefbe] p-5 shadow-xs transition duration-150 hover:shadow-sm flex flex-col justify-between',
         className
       )}
     >
       <div className="flex items-start justify-between gap-3">
         <div className="space-y-1">
-          <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">{title}</p>
-          <div className="text-2xl font-bold text-slate-900 tracking-tight">{value}</div>
+          <p className="text-xs font-normal text-zinc-500">{title}</p>
+          <div className="text-2xl font-bold text-zinc-900 tracking-tight">{value}</div>
         </div>
 
         {Icon && (
@@ -33,7 +33,7 @@ export const StatsCard = ({
       </div>
 
       {(change !== undefined || subtext) && (
-        <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+        <div className="mt-4 pt-3 border-t border-[#faefbe]/60 flex items-center justify-between text-xs">
           {change !== undefined && (
             <div
               className={cn(

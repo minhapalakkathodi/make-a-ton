@@ -3,13 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import {
   Menu,
   Search,
-  Bell,
   ChevronDown,
   LogOut,
   User,
   Shield,
   Briefcase,
-  Sparkles,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { NotificationDropdown } from './NotificationDropdown';
@@ -34,20 +32,20 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
   };
 
   const roleBadges = {
-    admin: { label: 'Admin View', bg: 'bg-blue-50 text-blue-700 border-blue-200', icon: Shield },
-    staff: { label: 'Staff View', bg: 'bg-indigo-50 text-indigo-700 border-indigo-200', icon: Briefcase },
+    admin: { label: 'Admin View', bg: 'bg-[#fef3c7] text-[#92400e] border-[#fde68a]', icon: Shield },
+    staff: { label: 'Staff View', bg: 'bg-blue-50 text-blue-700 border-blue-200', icon: Briefcase },
     customer: { label: 'Customer View', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200', icon: User },
   };
 
   const CurrentRoleIcon = roleBadges[role]?.icon || Shield;
 
   return (
-    <header className="sticky top-0 z-30 h-16 bg-white border-b border-slate-200/80 px-4 sm:px-6 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 h-16 bg-[#fffdf5] border-b border-[#faefbe] px-4 sm:px-6 flex items-center justify-between gap-4">
       {/* Left: Sidebar toggle & Search input */}
       <div className="flex items-center gap-3 flex-1 max-w-lg">
         <button
           onClick={onToggleSidebar}
-          className="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition focus:outline-none"
+          className="p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-[#fef8db] transition focus:outline-none"
           title={isSidebarCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           <Menu className="w-5 h-5" />
@@ -59,7 +57,7 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
           <input
             type="text"
             placeholder="Search anything..."
-            className="w-full pl-9 pr-4 py-1.5 text-xs bg-slate-50 border border-slate-200/80 rounded-full text-slate-700 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-colors"
+            className="w-full pl-9 pr-4 py-1.5 text-xs bg-white border border-[#faefbe] rounded-full text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#f5b72e]/30 focus:border-[#f5b72e] transition-colors shadow-2xs"
           />
         </div>
       </div>
@@ -70,8 +68,8 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
         <div className="relative">
           <button
             onClick={() => setIsRoleMenuOpen(!isRoleMenuOpen)}
-            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold border transition shadow-2xs ${
-              roleBadges[role]?.bg || 'bg-slate-100 text-slate-800 border-slate-200'
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border transition shadow-2xs ${
+              roleBadges[role]?.bg || 'bg-[#fef8db] text-slate-800 border-[#faefbe]'
             }`}
           >
             <CurrentRoleIcon className="w-3.5 h-3.5" />
@@ -82,17 +80,17 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
           {isRoleMenuOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setIsRoleMenuOpen(false)} />
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 z-50 p-1.5 animate-in fade-in zoom-in-95">
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 z-50 p-1.5 animate-in fade-in zoom-in-95">
                 <div className="px-3 py-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
                   Switch Demo Persona
                 </div>
                 <button
                   onClick={() => handleRoleSwitch('admin')}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition text-left ${
-                    role === 'admin' ? 'bg-blue-50 text-blue-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'
+                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition text-left ${
+                    role === 'admin' ? 'bg-[#fef8db] text-slate-900 font-bold' : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  <Shield className="w-4 h-4 text-blue-600" />
+                  <Shield className="w-4 h-4 text-[#d97706]" />
                   <div>
                     <div>Administrator</div>
                     <div className="text-[10px] text-slate-400">Full management suite</div>
@@ -100,11 +98,11 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
                 </button>
                 <button
                   onClick={() => handleRoleSwitch('staff')}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition text-left ${
-                    role === 'staff' ? 'bg-indigo-50 text-indigo-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'
+                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition text-left ${
+                    role === 'staff' ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
-                  <Briefcase className="w-4 h-4 text-indigo-600" />
+                  <Briefcase className="w-4 h-4 text-blue-600" />
                   <div>
                     <div>Staff Member</div>
                     <div className="text-[10px] text-slate-400">Daily billing operations</div>
@@ -112,8 +110,8 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
                 </button>
                 <button
                   onClick={() => handleRoleSwitch('customer')}
-                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-medium transition text-left ${
-                    role === 'customer' ? 'bg-emerald-50 text-emerald-700 font-semibold' : 'text-slate-700 hover:bg-slate-50'
+                  className={`w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-medium transition text-left ${
+                    role === 'customer' ? 'bg-emerald-50 text-emerald-700 font-bold' : 'text-slate-700 hover:bg-slate-50'
                   }`}
                 >
                   <User className="w-4 h-4 text-emerald-600" />
@@ -130,13 +128,13 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
         {/* Notifications */}
         <NotificationDropdown />
 
-        {/* User Avatar Circle matching screenshot (e.g. JD with blue ring) */}
+        {/* User Avatar Circle */}
         <div className="relative">
           <button
             onClick={() => setIsProfileOpen(!isProfileOpen)}
-            className="flex items-center gap-2 p-1 rounded-full hover:bg-slate-100 transition focus:outline-none"
+            className="flex items-center gap-2 p-1 rounded-full hover:bg-[#fef8db] transition focus:outline-none"
           >
-            <div className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center ring-2 ring-blue-100">
+            <div className="w-8 h-8 rounded-full bg-[#f5b72e] text-slate-900 font-bold text-xs flex items-center justify-center ring-2 ring-[#faefbe]">
               {role === 'customer' ? 'JD' : currentUser?.name?.charAt(0) || 'A'}
             </div>
           </button>
@@ -144,7 +142,7 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
           {isProfileOpen && (
             <>
               <div className="fixed inset-0 z-40" onClick={() => setIsProfileOpen(false)} />
-              <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-slate-200 z-50 p-2 animate-in fade-in zoom-in-95">
+              <div className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-slate-100 z-50 p-2 animate-in fade-in zoom-in-95">
                 <div className="p-2.5 border-b border-slate-100">
                   <p className="text-xs font-bold text-slate-900">{currentUser?.name}</p>
                   <p className="text-[11px] text-slate-500 truncate mt-0.5">{currentUser?.email}</p>
@@ -157,7 +155,7 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
                       else if (role === 'staff') navigate('/staff/profile');
                       else navigate('/admin/settings');
                     }}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-lg transition"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-50 rounded-xl transition"
                   >
                     <User className="w-4 h-4 text-slate-400" />
                     <span>My Profile</span>
@@ -166,7 +164,7 @@ export const Header = ({ onToggleSidebar, isSidebarCollapsed }) => {
                 <div className="pt-1 border-t border-slate-100">
                   <button
                     onClick={handleLogout}
-                    className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-lg transition"
+                    className="w-full flex items-center gap-2 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-50 rounded-xl transition"
                   >
                     <LogOut className="w-4 h-4" />
                     <span>Logout</span>

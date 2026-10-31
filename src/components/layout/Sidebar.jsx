@@ -5,7 +5,6 @@ import {
   Package,
   Layers,
   Repeat,
-  FileSpreadsheet,
   Receipt,
   CreditCard,
   Percent,
@@ -20,6 +19,7 @@ import {
   LogOut,
   ChevronLeft,
   ChevronRight,
+  FileSpreadsheet,
 } from 'lucide-react';
 import { BrightLoopLogo } from '../common/BrightLoopLogo';
 import { useAuth } from '../../context/AuthContext';
@@ -34,7 +34,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
     navigate('/login');
   };
 
-  // Nav menu items matching screenshot exactly
+  // Menu items matching the new templates
   const adminMenuItems = [
     { label: 'Dashboard', icon: LayoutDashboard, to: '/admin/dashboard' },
     { label: 'Products', icon: Package, to: '/admin/products' },
@@ -82,31 +82,31 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
       {/* Mobile Backdrop */}
       {isMobileOpen && (
         <div
-          className="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-xs md:hidden"
+          className="fixed inset-0 z-40 bg-slate-900/40 backdrop-blur-xs md:hidden"
           onClick={onCloseMobile}
         />
       )}
 
-      {/* Sidebar Frame */}
+      {/* Sidebar Frame - Warm Butter Cream Yellow (#fef8db) */}
       <aside
         className={cn(
-          'fixed md:static inset-y-0 left-0 z-50 flex flex-col bg-[#0d1527] text-slate-300 transition-all duration-300 border-r border-slate-800/80 shadow-xl md:shadow-none select-none',
+          'fixed md:static inset-y-0 left-0 z-50 flex flex-col bg-[#fef8db] text-slate-800 transition-all duration-300 border-r border-[#faefbe] select-none',
           isCollapsed ? 'w-20' : 'w-60',
           isMobileOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         )}
       >
         {/* Brand Header */}
-        <div className="h-16 flex items-center justify-between px-5 border-b border-slate-800/80 shrink-0">
+        <div className="h-16 flex items-center justify-between px-5 border-b border-[#faefbe] shrink-0">
           <Link
             to={role === 'customer' ? '/portal/dashboard' : role === 'staff' ? '/staff/dashboard' : '/admin/dashboard'}
-            className="flex items-center gap-2.5 overflow-hidden"
+            className="flex items-center gap-2 overflow-hidden"
           >
-            <BrightLoopLogo isWhite={true} showText={!isCollapsed} />
+            <BrightLoopLogo showText={!isCollapsed} />
           </Link>
 
           <button
             onClick={onToggleCollapse}
-            className="hidden md:flex p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800/60 transition"
+            className="hidden md:flex p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-[#faefbe] transition"
             title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
             {isCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -126,8 +126,8 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
                   cn(
                     'flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs transition-all duration-150 group relative',
                     isActive
-                      ? 'bg-blue-600 text-white font-semibold shadow-md shadow-blue-600/30'
-                      : 'text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 font-medium',
+                      ? 'bg-[#f5b72e] text-slate-950 font-bold shadow-xs'
+                      : 'text-slate-700 hover:text-slate-950 hover:bg-[#faefbe] font-medium',
                     isCollapsed && 'justify-center px-2 py-3'
                   )
                 }
@@ -138,7 +138,7 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
 
                 {/* Collapsed Tooltip */}
                 {isCollapsed && (
-                  <span className="absolute left-full ml-3 px-2 py-1 bg-slate-800 text-white text-xs rounded-md shadow-lg whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
+                  <span className="absolute left-full ml-3 px-2 py-1 bg-slate-900 text-white text-xs rounded-md shadow-lg whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50">
                     {item.label}
                   </span>
                 )}
@@ -147,34 +147,34 @@ export const Sidebar = ({ isCollapsed, onToggleCollapse, isMobileOpen, onCloseMo
           })}
         </div>
 
-        {/* Bottom User Pill matching screenshot (circle avatar + Admin/Staff + Logout) */}
-        <div className="p-3 border-t border-slate-800/80 shrink-0">
+        {/* Bottom User Pill */}
+        <div className="p-3 border-t border-[#faefbe] shrink-0">
           <div
             className={cn(
               'flex items-center gap-3 p-2 rounded-xl transition',
               isCollapsed && 'justify-center p-1'
             )}
           >
-            <div className="w-8 h-8 rounded-full bg-slate-700/80 border border-slate-600 text-white flex items-center justify-center font-bold text-xs shrink-0">
+            <div className="w-8 h-8 rounded-full bg-[#faefbe] border border-[#ebd88d] text-slate-800 flex items-center justify-center font-bold text-xs shrink-0">
               {currentUser?.name?.charAt(0) || (role === 'admin' ? 'A' : role === 'staff' ? 'S' : 'C')}
             </div>
 
             {!isCollapsed && (
               <div className="min-w-0 flex-1 flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-semibold text-white capitalize leading-tight">
+                  <p className="text-xs font-bold text-slate-900 capitalize leading-tight">
                     {role === 'admin' ? 'Admin' : role === 'staff' ? 'Staff' : 'Customer'}
                   </p>
                   <button
                     onClick={handleLogout}
-                    className="text-[11px] text-slate-400 hover:text-rose-400 transition leading-tight mt-0.5 flex items-center gap-1"
+                    className="text-[11px] text-slate-500 hover:text-rose-600 transition leading-tight mt-0.5 flex items-center gap-1"
                   >
                     Logout
                   </button>
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="p-1 rounded text-slate-400 hover:text-rose-400 transition"
+                  className="p-1 rounded text-slate-400 hover:text-rose-600 transition"
                   title="Logout"
                 >
                   <LogOut className="w-3.5 h-3.5" />
